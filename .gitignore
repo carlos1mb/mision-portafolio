@@ -1,0 +1,12 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+
+# Por si en el futuro se usa alguna herramienta de desarrollo local
+node_modules/
+*.log

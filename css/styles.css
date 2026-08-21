@@ -1,0 +1,581 @@
+/* ==================================================================== */
+/* styles.css — Portafolio "Misión: Planear para Enseñar"               */
+/* Sistema visual: azul noche + ámbar/dorado + cian, tipografía de      */
+/* sistema, layout modular tipo panel/centro de mando.                  */
+/* ==================================================================== */
+
+/* -------------------------------------------------------------------- */
+/* 1. Variables de diseño                                                */
+/* -------------------------------------------------------------------- */
+:root {
+  /* Fondos */
+  --bg-primary: #0a1128;
+  --bg-secondary: #0f1830;
+  --panel: #16204a;
+  --panel-hover: #1c2a5c;
+  --border: #2a355c;
+
+  /* Texto */
+  --text-primary: #f5f3ee;
+  --text-secondary: #b8c0d9;
+  --text-muted: #7e88ab;
+
+  /* Acentos */
+  --accent-primary: #e8b74e;
+  --accent-primary-dark: #c99a35;
+  --accent-secondary: #22d3ee;
+
+  /* Estados de recursos */
+  --state-completed: #34d399;
+  --state-building: #f0b429;
+  --state-available: #22d3ee;
+  --state-locked: #64748b;
+
+  /* Utilidad */
+  --shadow-color: rgba(4, 8, 20, 0.55);
+  --focus-ring: #22d3ee;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --header-height: 72px;
+  --container-max: 1280px;
+
+  /* Tipografía: pila de sistema, sin dependencias externas */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* -------------------------------------------------------------------- */
+/* 2. Reset básico                                                       */
+/* -------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+/* overflow-x:hidden va SOLO en body, nunca también en html: poner overflow-x
+   (o cualquier valor de overflow distinto de visible) en <html> hace que
+   deje de ser la "caja de scroll" del documento y rompe position:sticky en
+   sus descendientes (el header queda desplazándose con la página en vez de
+   quedarse fijo arriba). body solo ya evita el scroll horizontal. */
+body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { margin: 0; padding: 0; }
+button { font-family: inherit; }
+
+h1, h2, h3, p, blockquote, dl { margin: 0; }
+
+/* Salvaguarda general: ningún texto debe poder empujar el layout más ancho
+   que su contenedor en pantallas angostas. */
+h1, h2, h3, p, dd, dt, blockquote { overflow-wrap: break-word; }
+
+/* Ancla con desplazamiento correcto bajo el header fijo */
+section[id], [id^="resource-"] { scroll-margin-top: var(--header-height); }
+
+/* -------------------------------------------------------------------- */
+/* 3. Utilidades                                                         */
+/* -------------------------------------------------------------------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--accent-secondary); color: var(--bg-primary);
+  padding: 0.6rem 1rem; z-index: 200; border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+.skip-link:focus { left: 0; }
+
+.icon { width: 1.15em; height: 1.15em; flex-shrink: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+main > section {
+  padding: clamp(3rem, 6vw, 5.5rem) 1.25rem;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.section-head { margin-bottom: 2rem; text-align: center; }
+.section-eyebrow {
+  display: inline-block; font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent-secondary); font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+
+/* -------------------------------------------------------------------- */
+/* 4. Botones                                                            */
+/* -------------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.6rem; border-radius: var(--radius-sm);
+  font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  text-transform: uppercase;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary { background: var(--accent-primary); color: #1a1204; }
+.btn--primary:hover { background: var(--accent-primary-dark); }
+
+.btn--secondary { background: transparent; color: var(--text-primary); border-color: var(--border); }
+.btn--secondary:hover { border-color: var(--accent-secondary); color: var(--accent-secondary); }
+
+.btn--ghost {
+  width: 100%; background: transparent; color: var(--accent-secondary);
+  border-color: var(--border); text-transform: none; font-size: 0.85rem;
+}
+.btn--ghost:hover { background: rgba(34, 211, 238, 0.08); border-color: var(--accent-secondary); }
+
+.btn--card {
+  width: 100%; text-transform: none; font-size: 0.85rem; letter-spacing: normal;
+  background: var(--panel-hover); color: var(--text-primary); border-color: var(--border);
+}
+.btn--card:hover:not(:disabled) { border-color: var(--accent-secondary); color: var(--accent-secondary); }
+.btn--card:disabled {
+  opacity: 0.55; cursor: not-allowed; transform: none;
+}
+
+/* -------------------------------------------------------------------- */
+/* 5. Header / navegación                                                */
+/* -------------------------------------------------------------------- */
+/* Nota: backdrop-filter NO va aquí a propósito. Un filter/backdrop-filter en
+   un ancestro crea un "containing block" nuevo para sus descendientes
+   position:fixed -como el menú móvil-, lo que rompe su posicionamiento
+   respecto al viewport. Se activa solo en pantallas ≥768px, donde el menú
+   ya no es position:fixed (ver media query más abajo). */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10, 17, 40, 0.96);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.site-header--scrolled { border-bottom-color: var(--border); box-shadow: 0 6px 20px var(--shadow-color); }
+
+.navbar {
+  max-width: var(--container-max); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 0 1.25rem; height: var(--header-height);
+}
+
+.navbar__brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; letter-spacing: 0.03em; }
+.navbar__brand-mark { color: var(--accent-primary); display: flex; }
+.navbar__brand-mark .icon { width: 1.4em; height: 1.4em; }
+
+.navbar__menu {
+  display: flex; align-items: center; gap: 1.75rem;
+  list-style: none;
+}
+.navbar__link {
+  font-size: 0.9rem; font-weight: 600; color: var(--text-secondary);
+  position: relative; padding: 0.4rem 0; transition: color 0.2s ease;
+}
+.navbar__link:hover { color: var(--text-primary); }
+.navbar__link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+  background: var(--accent-secondary); transform: scaleX(0); transition: transform 0.2s ease;
+}
+.navbar__link--active { color: var(--text-primary); }
+.navbar__link--active::after { transform: scaleX(1); }
+
+.navbar__presentation-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text-secondary);
+  padding: 0.5rem 0.9rem; border-radius: var(--radius-sm); font-size: 0.78rem;
+  font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 0.04em;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.navbar__presentation-btn:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.navbar__presentation-btn[aria-pressed="true"] { border-color: var(--accent-primary); color: var(--accent-primary); }
+
+.navbar__toggle {
+  display: none; background: transparent; border: none; color: var(--text-primary);
+  cursor: pointer; padding: 0.4rem; position: relative; z-index: 110;
+}
+.navbar__toggle-icon { width: 1.6em; height: 1.6em; }
+.navbar__toggle-icon--close { display: none; }
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-icon--open { display: none; }
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-icon--close { display: block; }
+
+/* -------------------------------------------------------------------- */
+/* 6. Hero                                                               */
+/* -------------------------------------------------------------------- */
+.hero {
+  display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center;
+  padding-top: clamp(2.5rem, 7vw, 4.5rem);
+}
+/* min-width:0 evita que los ítems de grid se nieguen a encogerse por debajo
+   del ancho mínimo de su contenido (comportamiento por defecto de CSS Grid),
+   que es la causa típica de que un texto empuje el layout más allá del
+   viewport en pantallas angostas. */
+.hero__content { min-width: 0; }
+
+.hero__tag {
+  display: inline-block; font-size: 0.78rem; letter-spacing: 0.18em; font-weight: 700;
+  color: var(--accent-primary); text-transform: uppercase; margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.12; font-weight: 800;
+  letter-spacing: -0.01em; margin-bottom: 1.1rem;
+}
+.hero__title .hero__title-line { display: block; }
+.hero__title .hero__title-line--accent { color: var(--accent-secondary); }
+
+.hero__description { color: var(--text-secondary); font-size: 1.05rem; max-width: 34rem; margin-bottom: 1.75rem; }
+
+.hero__meta {
+  /* 1 columna por defecto (móvil): 3 columnas de mínimo 140px exigirían
+     ~470px, más de lo disponible en un teléfono, y forzarían overflow. */
+  display: grid; grid-template-columns: 1fr; min-width: 0;
+  gap: 1rem 1.5rem; margin-bottom: 2rem; max-width: 34rem;
+}
+.hero__meta div { display: flex; flex-direction: column; gap: 0.2rem; }
+.hero__meta dt { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.hero__meta dd { font-size: 0.92rem; font-weight: 600; margin: 0; }
+
+.hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+.hero__illustration { display: flex; justify-content: center; }
+.hero-illus { width: 100%; max-width: 420px; }
+
+/* -------------------------------------------------------------------- */
+/* 7. Dashboard / Centro de misiones                                     */
+/* -------------------------------------------------------------------- */
+.dashboard__status-bar {
+  display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2.5rem;
+}
+
+.status-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+.status-card__label {
+  display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.75rem;
+}
+.status-card--mission .status-card__value { font-size: 1.3rem; font-weight: 700; }
+.status-card--mission .status-card__sub { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.35rem; }
+.status-card--resources .status-card__value { font-size: 2rem; font-weight: 800; color: var(--accent-primary); }
+.status-card--resources .status-card__sub { color: var(--text-secondary); font-size: 0.9rem; }
+
+.progress-bar {
+  width: 100%; height: 10px; background: var(--bg-secondary); border-radius: 999px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.progress-bar--mini { height: 6px; }
+.progress-bar__fill {
+  height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+  border-radius: 999px; transition: width 0.6s ease;
+}
+.progress-bar__meta {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  margin-top: 0.65rem; font-size: 0.82rem; color: var(--text-secondary);
+}
+.progress-ascii { font-family: ui-monospace, "Consolas", "SFMono-Regular", monospace; color: var(--accent-secondary); letter-spacing: -1px; }
+
+.mission-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+/* min-width:0 en los ítems de grid: evita el mismo tipo de overflow que se
+   corrigió en .hero__content, por si algún texto largo no tuviera espacios
+   para envolver de forma natural. */
+.mission-cards > *, .resource-grid > *, .dashboard__status-bar > * { min-width: 0; }
+
+.mission-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.mission-card:hover { transform: translateY(-4px); border-color: var(--accent-secondary); background: var(--panel-hover); }
+.mission-card__number {
+  font-size: 0.85rem; font-weight: 800; color: var(--accent-primary);
+  letter-spacing: 0.05em;
+}
+.mission-card__name { font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.mission-card__desc { color: var(--text-secondary); font-size: 0.92rem; flex-grow: 1; }
+.mission-card__progress { display: flex; align-items: center; gap: 0.75rem; }
+.mission-card__progress span { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+
+/* -------------------------------------------------------------------- */
+/* 8. Cita conceptual                                                    */
+/* -------------------------------------------------------------------- */
+.concept-quote {
+  text-align: center; padding-top: 0 !important;
+}
+.concept-quote blockquote {
+  font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; line-height: 1.4;
+  color: var(--text-primary); max-width: 44rem; margin: 0 auto;
+  border-left: 3px solid var(--accent-primary); padding-left: 1.25rem; text-align: left;
+}
+
+/* -------------------------------------------------------------------- */
+/* 9. Encabezado de misión + diagnóstico                                 */
+/* -------------------------------------------------------------------- */
+.mission-section__header {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: 1.5rem; margin-bottom: 2.25rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem;
+}
+.mission-header__eyebrow {
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;
+}
+.mission-header__number {
+  font-size: 0.85rem; font-weight: 800; color: var(--accent-primary);
+  border: 1px solid var(--accent-primary); border-radius: 999px; width: 2rem; height: 2rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.mission-header__title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; text-transform: uppercase; }
+.mission-header__tagline { color: var(--text-secondary); max-width: 40rem; margin-top: 0.5rem; }
+.mission-header__progress { min-width: 220px; }
+.mission-header__progress .progress-bar__meta { justify-content: flex-end; }
+
+.diagnostic-strip {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2.5rem;
+}
+.diagnostic-stat {
+  background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+.diagnostic-stat__value { font-size: 2.2rem; font-weight: 800; color: var(--accent-secondary); line-height: 1; }
+.diagnostic-stat__label { font-size: 0.85rem; font-weight: 700; margin-top: 0.5rem; }
+.diagnostic-stat__desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem; }
+
+/* -------------------------------------------------------------------- */
+/* 10. Tarjetas de recurso                                               */
+/* -------------------------------------------------------------------- */
+.resource-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+
+.resource-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.5rem; display: flex; flex-direction: column; gap: 0.9rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.resource-card:hover { transform: translateY(-3px); border-color: var(--accent-secondary); }
+.resource-card--locked { opacity: 0.62; }
+.resource-card--locked:hover { transform: none; border-color: var(--border); }
+
+.resource-card__visual {
+  height: 130px; border-radius: var(--radius-sm); overflow: hidden;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.resource-card__visual img { width: 100%; height: 100%; object-fit: cover; }
+.resource-card__visual-icon { width: 2.2rem; height: 2.2rem; color: var(--text-muted); }
+
+.resource-card__title { font-size: 1.05rem; font-weight: 700; }
+.resource-card__subtitle { font-size: 0.8rem; color: var(--accent-secondary); font-weight: 600; margin-top: -0.5rem; }
+.resource-card__desc { color: var(--text-secondary); font-size: 0.88rem; flex-grow: 1; }
+
+.status-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem; align-self: flex-start;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+  padding: 0.3rem 0.65rem; border-radius: 999px; border: 1px solid currentColor;
+  background: rgba(255,255,255,0.03);
+}
+.status-badge .icon { width: 0.95em; height: 0.95em; }
+.status-badge--completed { color: var(--state-completed); }
+.status-badge--building { color: var(--state-building); }
+.status-badge--available { color: var(--state-available); }
+.status-badge--locked { color: var(--state-locked); }
+
+/* -------------------------------------------------------------------- */
+/* 11. Referencia secundaria: misiones pedagógicas internas             */
+/* -------------------------------------------------------------------- */
+.internal-missions {
+  margin-top: 2.5rem; padding: 1.5rem; border: 1px dashed var(--border);
+  border-radius: var(--radius-md); background: var(--bg-secondary);
+}
+.internal-missions__title {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-muted); margin-bottom: 1rem;
+}
+.internal-missions__list { display: flex; flex-wrap: wrap; gap: 0.75rem; list-style: none; }
+.internal-missions__item {
+  display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem;
+  background: var(--panel); border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+}
+.internal-missions__item strong { color: var(--accent-primary); }
+
+/* -------------------------------------------------------------------- */
+/* 12. Créditos                                                         */
+/* -------------------------------------------------------------------- */
+.credits-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+.credits-block {
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+.credits-block h3 { font-size: 1.05rem; margin-bottom: 0.9rem; }
+.credits-block__hint { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+.references-list, .acknowledgements-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.references-list li, .acknowledgements-list li { font-size: 0.88rem; color: var(--text-secondary); }
+.references-list .empty-hint, .acknowledgements-list .empty-hint { color: var(--text-muted); font-style: italic; }
+
+.license-badge {
+  display: flex; align-items: center; gap: 0.9rem; padding: 1rem; border-radius: var(--radius-sm);
+  background: var(--bg-secondary); border: 1px solid var(--border);
+}
+.license-badge__icon {
+  flex-shrink: 0; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  border: 1px solid var(--accent-primary); color: var(--accent-primary);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem;
+}
+.license-badge__name { font-weight: 700; font-size: 0.92rem; }
+.license-badge__link { font-size: 0.8rem; color: var(--accent-secondary); margin-top: 0.2rem; display: inline-block; }
+
+.nav-map {
+  background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+.nav-map h3 { margin-bottom: 1.25rem; }
+
+.nav-tree, .nav-tree ul { list-style: none; }
+.nav-tree { padding-left: 0; }
+.nav-tree ul { margin-left: 1.1rem; padding-left: 1rem; border-left: 1px dashed var(--border); }
+.nav-tree li { position: relative; padding: 0.35rem 0; }
+.nav-tree ul > li::before {
+  content: ""; position: absolute; left: -1rem; top: 1.05rem; width: 0.85rem; height: 1px;
+  border-top: 1px dashed var(--border);
+}
+.nav-tree a {
+  font-size: 0.88rem; color: var(--text-secondary); transition: color 0.15s ease;
+}
+.nav-tree > li > a { font-weight: 700; color: var(--text-primary); font-size: 0.95rem; }
+.nav-tree a:hover { color: var(--accent-secondary); }
+
+/* -------------------------------------------------------------------- */
+/* 13. Footer / volver arriba                                           */
+/* -------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--border); padding: 2rem 1.25rem; text-align: center;
+  color: var(--text-muted); font-size: 0.85rem;
+}
+
+.back-to-top {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 90;
+  width: 3rem; height: 3rem; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--panel); color: var(--text-primary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: translateY(10px); pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover { border-color: var(--accent-secondary); color: var(--accent-secondary); }
+
+/* -------------------------------------------------------------------- */
+/* 14. Modal                                                             */
+/* -------------------------------------------------------------------- */
+.modal[hidden] { display: none; }
+.modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+}
+.modal__backdrop {
+  position: absolute; inset: 0; background: rgba(4, 8, 20, 0.75); backdrop-filter: blur(2px);
+}
+.modal__panel {
+  position: relative; z-index: 1; background: var(--panel); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem; max-width: 640px; width: 100%;
+  max-height: 88vh; overflow-y: auto; box-shadow: 0 20px 60px var(--shadow-color);
+}
+.modal__close {
+  position: absolute; top: 1rem; right: 1rem; width: 2.4rem; height: 2.4rem;
+  border-radius: 50%; border: 1px solid var(--border); background: var(--bg-secondary);
+  color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.modal__close:hover { border-color: var(--accent-secondary); color: var(--accent-secondary); }
+.modal__title { font-size: 1.3rem; margin: 0.75rem 0 0.5rem; padding-right: 2.5rem; }
+.modal__description { color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem; }
+.modal__content { margin-bottom: 1.25rem; }
+.modal__content img { width: 100%; border-radius: var(--radius-sm); }
+
+.video-embed-16x9 {
+  position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-secondary);
+  border-radius: var(--radius-sm); overflow: hidden;
+}
+.video-embed-16x9 video, .video-embed-16x9 iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+
+.modal-placeholder {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
+  aspect-ratio: 16 / 9; background: var(--bg-secondary); border-radius: var(--radius-sm);
+  border: 1px dashed var(--border); color: var(--text-muted); text-align: center; padding: 1.5rem;
+}
+.modal-placeholder .icon { width: 2rem; height: 2rem; }
+
+.modal__footer { display: flex; justify-content: flex-end; }
+
+/* -------------------------------------------------------------------- */
+/* 15. Modo presentación                                                 */
+/* -------------------------------------------------------------------- */
+body.presentation-mode .site-footer,
+body.presentation-mode .internal-missions,
+body.presentation-mode .concept-quote,
+body.presentation-mode .navbar__brand-text {
+  display: none;
+}
+body.presentation-mode main > section { padding-top: clamp(3.5rem, 8vw, 6.5rem); padding-bottom: clamp(3.5rem, 8vw, 6.5rem); }
+body.presentation-mode .section-title { font-size: clamp(2rem, 4vw, 2.8rem); }
+
+/* -------------------------------------------------------------------- */
+/* 16. Responsive — Laptop / Tablet (≥768px)                            */
+/* -------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .navbar__toggle { display: none; }
+  .navbar__menu { display: flex; position: static; flex-direction: row; background: none; padding: 0; }
+  /* El menú ya no es position:fixed aquí, así que el blur no rompe nada. */
+  .site-header { background: rgba(10, 17, 40, 0.85); backdrop-filter: blur(10px); }
+
+  .hero__meta { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+  .mission-cards { grid-template-columns: repeat(2, 1fr); }
+  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard__status-bar { grid-template-columns: repeat(2, 1fr); }
+  .dashboard__status-bar .status-card--resources { grid-column: span 2; }
+  .diagnostic-strip { grid-template-columns: repeat(4, 1fr); }
+  .credits-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 767.98px) {
+  .navbar__menu {
+    position: fixed; top: var(--header-height); left: 0; right: 0; bottom: 0;
+    background: var(--bg-primary); flex-direction: column; align-items: flex-start;
+    gap: 0; padding: 1.5rem; overflow-y: auto;
+    transform: translateX(100%); transition: transform 0.25s ease;
+    border-top: 1px solid var(--border);
+  }
+  .navbar__menu.is-open { transform: translateX(0); }
+  .navbar__menu li { width: 100%; }
+  .navbar__link { display: block; padding: 0.9rem 0; width: 100%; font-size: 1.05rem; border-bottom: 1px solid var(--border); }
+  .navbar__toggle { display: inline-flex; align-items: center; }
+  .navbar__presentation-btn { display: none; }
+
+  .modal__panel { max-width: 92vw; padding: 1.5rem; }
+}
+
+/* -------------------------------------------------------------------- */
+/* 17. Responsive — Desktop (≥1200px)                                   */
+/* -------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+  .hero { grid-template-columns: 1.15fr 1fr; }
+  .mission-cards { grid-template-columns: repeat(3, 1fr); }
+  .resource-grid { grid-template-columns: repeat(3, 1fr); }
+  .dashboard__status-bar { grid-template-columns: repeat(3, 1fr); }
+  .dashboard__status-bar .status-card--resources { grid-column: auto; }
+}

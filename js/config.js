@@ -1,0 +1,263 @@
+/**
+ * config.js
+ * -----------------------------------------------------------------------
+ * ÚNICA FUENTE DE DATOS del portafolio "MISIÓN: PLANEAR PARA ENSEÑAR".
+ *
+ * Este archivo se carga ANTES de js/app.js (ver index.html). Ningún dato
+ * de autoría, institución, estado de recursos o contenido textual debe
+ * escribirse directamente en el HTML: todo se inyecta desde este objeto.
+ *
+ * Para actualizar el portafolio (agregar autores, cambiar el estado de un
+ * recurso, enlazar un video real, etc.) solo se necesita editar este
+ * archivo. Ver README.md → "Cómo agregar/actualizar un recurso".
+ *
+ * Estados válidos para cualquier recurso (campo `status`):
+ *   "available"  -> Disponible
+ *   "building"   -> En construcción
+ *   "completed"  -> Completada
+ *   "locked"     -> Bloqueada
+ * -----------------------------------------------------------------------
+ */
+
+const SITE_CONFIG = {
+  /* ---------------------------------------------------------------- */
+  /* Metadatos del sitio (SEO, favicon, color de tema)                 */
+  /* ---------------------------------------------------------------- */
+  meta: {
+    lang: "es",
+    title: "Misión: Planear para Enseñar | Portafolio RED",
+    description:
+      "Portafolio digital académico del curso Diseño y Construcción de Recursos Educativos Digitales. Documenta el proceso de planeación didáctica de una secuencia gamificada mediada por Genially, organizada como una ruta de misiones pedagógicas.",
+    themeColor: "#0a1128",
+    favicon: "assets/img/favicon.svg",
+    ogImage: "assets/img/og-image.svg",
+    // Placeholder: se completa cuando exista la URL real de GitHub Pages.
+    siteUrl: "",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Institución y curso                                               */
+  /* ---------------------------------------------------------------- */
+  institution: {
+    name: "Escuela Normal Superior de Corozal",
+    program: "Programa de Formación Complementaria",
+    course: "Diseño y Construcción de Recursos Educativos Digitales",
+    semester: "Segundo semestre",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Proyecto de investigación de referencia                           */
+  /* ---------------------------------------------------------------- */
+  project: {
+    fullTitle:
+      "Secuencia didáctica gamificada en Genially para fortalecer las competencias pedagógicas asociadas a la planeación didáctica en los docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal",
+    heroTag: "PORTAFOLIO RED",
+    heroTitleLine1: "MISIÓN:",
+    heroTitleLine2: "PLANEAR PARA ENSEÑAR",
+    heroDescription:
+      "Portafolio digital de diseño y construcción de recursos educativos. Un recorrido por las decisiones pedagógicas, los referentes y los productos construidos para fortalecer la planeación didáctica de los docentes en formación.",
+    heroQuote:
+      "Planear no es llenar un formato: es tomar decisiones pedagógicas con intención.",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Personas — fácil de editar sin tocar el HTML                      */
+  /* ---------------------------------------------------------------- */
+  people: {
+    // Agregar más coautores: { name: "...", role: "Autor" }
+    authors: [{ name: "Carlos Martínez Balasnoa", role: "Autor" }],
+    // No inventar nombres: se deja como placeholder explícito hasta confirmar.
+    tutor: "[NOMBRE DOCENTE TUTOR]",
+    director: "[NOMBRE DIRECTOR]",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Datos del diagnóstico (Misión 01 — Póster)                        */
+  /* ---------------------------------------------------------------- */
+  diagnostic: [
+    {
+      value: 66,
+      label: "DBA + evidencias + desempeños",
+      description: "Dificultad para articular coherencia curricular.",
+    },
+    {
+      value: 65,
+      label: "Actividades + evaluación",
+      description: "Dificultad para relacionar actividades y evaluación.",
+    },
+    {
+      value: 60,
+      label: "Objetivos de aprendizaje",
+      description: "Dificultad en la formulación de objetivos.",
+    },
+    {
+      value: 60,
+      label: "Uso pedagógico de TIC",
+      description: "Uso pedagógico limitado de recursos digitales.",
+    },
+  ],
+
+  /* ---------------------------------------------------------------- */
+  /* Navegación principal                                              */
+  /* ---------------------------------------------------------------- */
+  navigation: [
+    { id: "inicio", label: "Inicio" },
+    { id: "mision-01", label: "Misión 01" },
+    { id: "mision-02", label: "Misión 02" },
+    { id: "mision-03", label: "Misión 03" },
+    { id: "creditos", label: "Créditos" },
+  ],
+
+  /* ---------------------------------------------------------------- */
+  /* Misiones principales del portafolio (4 secciones del menú)        */
+  /* No confundir con `internalMissions` (5 misiones de la investigación) */
+  /* ---------------------------------------------------------------- */
+  missions: [
+    {
+      id: "mision-01",
+      number: "01",
+      codename: "Identificando",
+      tagline: "Comprender el reto educativo antes de diseñar la solución.",
+      resourceIds: ["avatar1", "avatar2", "poster"],
+    },
+    {
+      id: "mision-02",
+      number: "02",
+      codename: "Referenciando",
+      tagline: "Construir fundamentos para comprender y orientar la propuesta.",
+      resourceIds: ["ebook"],
+    },
+    {
+      id: "mision-03",
+      number: "03",
+      codename: "Diseñando",
+      tagline: "Transformar las decisiones pedagógicas en una experiencia de aprendizaje.",
+      resourceIds: [
+        "unidadDidactica",
+        "infografia",
+        "disenoInstruccional",
+        "productoFinal",
+        "videoTutorial",
+      ],
+    },
+  ],
+
+  /* ---------------------------------------------------------------- */
+  /* Recursos — cada uno pertenece a una misión y tiene un estado.     */
+  /* Tipos: "video" | "image" | "document" | "external"                */
+  /* ---------------------------------------------------------------- */
+  resources: {
+    avatar1: {
+      title: "Avatar 01",
+      type: "video",
+      missionId: "mision-01",
+      description: "Presentación del título del trabajo de grado, autores y director.",
+      status: "building",
+      video: { type: "local", src: null }, // local | embed | external
+    },
+    avatar2: {
+      title: "Avatar 02",
+      type: "video",
+      missionId: "mision-01",
+      description: "Presentación breve de la problemática y el planteamiento del problema.",
+      status: "building",
+      video: { type: "local", src: null },
+    },
+    poster: {
+      title: "Póster digital — Diagnóstico",
+      type: "image",
+      missionId: "mision-01",
+      description: "Síntesis visual del diagnóstico que motiva la propuesta.",
+      status: "completed",
+      thumbnail: "assets/posters/poster-full.svg",
+      fullImage: "assets/posters/poster-full.svg",
+    },
+
+    ebook: {
+      title: "E-book",
+      type: "document",
+      missionId: "mision-02",
+      description: "Fundamentos teóricos que orientan la propuesta didáctica.",
+      status: "building",
+      documentPath: null,
+    },
+
+    unidadDidactica: {
+      title: "Unidad didáctica",
+      type: "document",
+      missionId: "mision-03",
+      description: "Planeación de la secuencia didáctica gamificada.",
+      status: "locked",
+      documentPath: null,
+    },
+    infografia: {
+      title: "Infografía",
+      subtitle: "Propuesta metodológica",
+      type: "image",
+      missionId: "mision-03",
+      description: "Síntesis visual de la propuesta metodológica.",
+      status: "locked",
+      fullImage: null,
+    },
+    disenoInstruccional: {
+      title: "Diseño instruccional",
+      type: "document",
+      missionId: "mision-03",
+      description: "Estructura instruccional de la secuencia gamificada.",
+      status: "locked",
+      documentPath: null,
+    },
+    productoFinal: {
+      title: "Producto final",
+      type: "external",
+      missionId: "mision-03",
+      description: "Secuencia didáctica gamificada, mediada por Genially.",
+      status: "locked",
+      externalLink: null,
+    },
+    videoTutorial: {
+      title: "Video tutorial",
+      type: "video",
+      missionId: "mision-03",
+      description: "Guía de uso del producto final.",
+      status: "locked",
+      video: { type: "embed", src: null },
+    },
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Referencia secundaria: 5 misiones pedagógicas de la investigación.*/
+  /* Se muestran dentro de Misión 03 como contexto, no como navegación.*/
+  /* ---------------------------------------------------------------- */
+  internalMissions: [
+    { number: 1, title: "Formular objetivos" },
+    { number: 2, title: "Diseñar actividades coherentes" },
+    { number: 3, title: "Construir criterios e instrumentos de evaluación" },
+    { number: 4, title: "Seleccionar recursos digitales con intención pedagógica" },
+    { number: 5, title: "Adaptar la planeación al contexto" },
+  ],
+
+  /* ---------------------------------------------------------------- */
+  /* Créditos                                                          */
+  /* ---------------------------------------------------------------- */
+  credits: {
+    // Agregar referencias en formato APA 7 a medida que se confirmen.
+    references: [],
+    acknowledgements: [
+      "A la comunidad educativa de la Escuela Normal Superior de Corozal por su acompañamiento en este proceso de formación.",
+    ],
+    license: {
+      name: "Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional",
+      short: "CC BY-NC-SA 4.0",
+      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es",
+    },
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Progreso                                                          */
+  /* ---------------------------------------------------------------- */
+  progress: {
+    // Si se define un id de misión aquí, se fuerza cuál se muestra como activa.
+    activeMissionOverride: null,
+  },
+};

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misión: Planear para Enseñar | Portafolio RED</title>
+  <meta name="description" content="Portafolio digital académico del curso Diseño y Construcción de Recursos Educativos Digitales. Una ruta de misiones pedagógicas para documentar el diseño de una secuencia didáctica gamificada." />
+  <meta name="theme-color" content="#0a1128" />
+
+  <!-- Open Graph básico -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Misión: Planear para Enseñar | Portafolio RED" />
+  <meta property="og:description" content="Portafolio digital de diseño y construcción de recursos educativos." />
+  <meta property="og:image" content="assets/img/og-image.svg" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="is-loading">
+
+  <!-- ================================================================ -->
+  <!-- Sprite de iconos SVG (inline, referenciado con <use>).            -->
+  <!-- Se define aquí -no vía fetch()- para funcionar también con       -->
+  <!-- file:// al abrir index.html localmente sin servidor.             -->
+  <!-- ================================================================ -->
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-wrench" viewBox="0 0 24 24">
+      <path d="M16.5 3.5a4 4 0 0 0-5.4 5.4L4 16l3 3 6.9-6.9a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-.6-.6-2 2.8-2.8z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24">
+      <rect x="5" y="11" width="14" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M8 11V7.5a4 4 0 0 1 8 0V11" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="12" cy="15.4" r="1.2" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+      <path d="M12 19V6M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24">
+      <path d="M9 6H6a1.5 1.5 0 0 0-1.5 1.5v10A1.5 1.5 0 0 0 6 19h10a1.5 1.5 0 0 0 1.5-1.5V15M13 5h6v6M19 5l-9 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24">
+      <rect x="4" y="5" width="16" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="9" cy="10" r="1.4" fill="currentColor" stroke="none"/>
+      <path d="M5 16l4.5-4.5L13 15l2.5-2.5L19 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24">
+      <rect x="3.5" y="6" width="13" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M16.5 10.5l4-2.3v7.6l-4-2.3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-document" viewBox="0 0 24 24">
+      <path d="M7 3.5h7l3.5 3.5V19A1.5 1.5 0 0 1 16 20.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M14 3.5V7h3.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M8.5 12h7M8.5 15.5h7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24">
+      <path d="M4 5.5c2-.7 4.3-.7 6.5 0v13c-2.2-.7-4.5-.7-6.5 0z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M20 5.5c-2-.7-4.3-.7-6.5 0v13c2.2-.7 4.5-.7 6.5 0z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M14.5 9.5l-2 4.5-4.5 2 2-4.5z" fill="currentColor" stroke="none"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <!-- ================================================================ -->
+  <!-- Encabezado y navegación                                          -->
+  <!-- ================================================================ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="navbar" aria-label="Navegación principal">
+      <a class="navbar__brand" href="#inicio">
+        <span class="navbar__brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" class="icon"><use href="#icon-compass"></use></svg>
+        </span>
+        <span class="navbar__brand-text">Portafolio&nbsp;RED</span>
+      </a>
+
+      <button class="navbar__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        <svg viewBox="0 0 24 24" class="icon navbar__toggle-icon navbar__toggle-icon--open"><use href="#icon-menu"></use></svg>
+        <svg viewBox="0 0 24 24" class="icon navbar__toggle-icon navbar__toggle-icon--close"><use href="#icon-close"></use></svg>
+        <span class="sr-only">Abrir menú de navegación</span>
+      </button>
+
+      <ul class="navbar__menu" id="navMenu"></ul>
+
+      <button class="navbar__presentation-btn" id="presentationToggle" type="button" aria-pressed="false">
+        Modo presentación
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================ -->
+    <!-- INICIO — Hero                                                -->
+    <!-- ============================================================ -->
+    <section id="inicio" class="hero" aria-labelledby="heroTitle">
+      <div class="hero__content">
+        <span class="hero__tag" id="heroTag"></span>
+        <h1 class="hero__title" id="heroTitle"></h1>
+        <p class="hero__description" id="heroDescription"></p>
+
+        <dl class="hero__meta" id="heroMeta" aria-label="Datos del proyecto"></dl>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#centro-misiones">Iniciar misión</a>
+          <a class="btn btn--secondary" href="#mapa-navegacion">Explorar portafolio</a>
+        </div>
+      </div>
+
+      <div class="hero__illustration" aria-hidden="true">
+        <svg viewBox="0 0 480 480" class="hero-illus" role="img" aria-hidden="true">
+          <defs>
+            <radialGradient id="heroGlow" cx="50%" cy="45%" r="60%">
+              <stop offset="0%" stop-color="#e8b74e" stop-opacity="0.22" />
+              <stop offset="55%" stop-color="#22d3ee" stop-opacity="0.08" />
+              <stop offset="100%" stop-color="#22d3ee" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <circle class="hero-illus__glow" cx="240" cy="220" r="200" fill="url(#heroGlow)" />
+
+          <!-- Rejilla tipo plano / blueprint -->
+          <g class="hero-illus__grid" stroke="#b8c0d9" stroke-width="1" opacity="0.09">
+            <line x1="40" y1="120" x2="440" y2="120" />
+            <line x1="40" y1="240" x2="440" y2="240" />
+            <line x1="40" y1="360" x2="440" y2="360" />
+            <line x1="140" y1="40" x2="140" y2="440" />
+            <line x1="340" y1="40" x2="340" y2="440" />
+          </g>
+
+          <!-- Órbita decorativa -->
+          <circle class="hero-illus__orbit" cx="240" cy="220" r="150" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="2 10" opacity="0.5" />
+
+          <!-- Rutas entre nodos -->
+          <g class="hero-illus__routes" fill="none" stroke="#22d3ee" stroke-width="1.6" stroke-linecap="round" opacity="0.75">
+            <path class="hero-illus__route" d="M240 220 C 300 180, 330 140, 360 110" stroke-dasharray="5 7" />
+            <path class="hero-illus__route" d="M240 220 C 180 190, 140 170, 100 150" stroke-dasharray="5 7" />
+            <path class="hero-illus__route" d="M240 220 C 210 280, 190 320, 165 360" stroke-dasharray="5 7" />
+            <path class="hero-illus__route" d="M240 220 C 290 270, 320 300, 355 330" stroke-dasharray="5 7" />
+          </g>
+
+          <!-- Nodos: relleno = activo, anillo = pendiente -->
+          <g class="hero-illus__nodes">
+            <circle class="hero-illus__node hero-illus__node--pending" cx="360" cy="110" r="9" fill="none" stroke="#e8b74e" stroke-width="2" />
+            <circle class="hero-illus__node hero-illus__node--pending" cx="100" cy="150" r="9" fill="none" stroke="#e8b74e" stroke-width="2" />
+            <circle class="hero-illus__node hero-illus__node--pending" cx="165" cy="360" r="9" fill="none" stroke="#e8b74e" stroke-width="2" />
+            <circle class="hero-illus__node hero-illus__node--pending" cx="355" cy="330" r="9" fill="none" stroke="#e8b74e" stroke-width="2" />
+          </g>
+
+          <!-- Brújula central -->
+          <g class="hero-illus__compass" transform="translate(240 220)">
+            <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="none" stroke="#e8b74e" stroke-width="2" />
+            <circle r="30" fill="none" stroke="#f5f3ee" stroke-width="1" opacity="0.5" />
+            <path class="hero-illus__needle" d="M0 -22 L7 6 L0 22 L-7 6 Z" fill="#22d3ee" />
+            <circle r="4.5" fill="#e8b74e" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CENTRO DE MISIONES — Dashboard                               -->
+    <!-- ============================================================ -->
+    <section id="centro-misiones" class="dashboard" aria-labelledby="dashboardHeading">
+      <div class="section-head">
+        <span class="section-eyebrow">Centro de misiones</span>
+        <h2 class="section-title" id="dashboardHeading">Estado actual del portafolio</h2>
+      </div>
+
+      <div class="dashboard__status-bar">
+        <div class="status-card status-card--mission" id="currentMissionCard"></div>
+
+        <div class="status-card status-card--progress" id="globalProgressCard">
+          <span class="status-card__label">Progreso del portafolio</span>
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+               aria-label="Progreso global del portafolio" id="globalProgressBar">
+            <div class="progress-bar__fill" id="globalProgressFill"></div>
+          </div>
+          <div class="progress-bar__meta">
+            <span class="progress-ascii" aria-hidden="true" id="globalProgressAscii"></span>
+            <span id="globalProgressLabel"></span>
+          </div>
+        </div>
+
+        <div class="status-card status-card--resources" id="resourcesCompletedCard"></div>
+      </div>
+
+      <div class="mission-cards" id="missionCardsContainer"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Cita conceptual                                              -->
+    <!-- ============================================================ -->
+    <section id="concepto" class="concept-quote" aria-label="Idea central del portafolio">
+      <blockquote id="conceptQuote"></blockquote>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MISIÓN 01 — IDENTIFICANDO                                    -->
+    <!-- ============================================================ -->
+    <section id="mision-01" class="mission-section" data-mission-id="mision-01" aria-labelledby="mision-01-heading">
+      <div class="mission-section__header"></div>
+      <div class="diagnostic-strip" id="diagnosticStats" aria-label="Datos del diagnóstico"></div>
+      <div class="resource-grid" id="grid-mision-01"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MISIÓN 02 — REFERENCIANDO                                    -->
+    <!-- ============================================================ -->
+    <section id="mision-02" class="mission-section" data-mission-id="mision-02" aria-labelledby="mision-02-heading">
+      <div class="mission-section__header"></div>
+      <div class="resource-grid" id="grid-mision-02"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- MISIÓN 03 — DISEÑANDO                                        -->
+    <!-- ============================================================ -->
+    <section id="mision-03" class="mission-section" data-mission-id="mision-03" aria-labelledby="mision-03-heading">
+      <div class="mission-section__header"></div>
+      <div class="resource-grid" id="grid-mision-03"></div>
+      <aside class="internal-missions" id="internalMissionsRef" aria-label="Misiones pedagógicas internas de la investigación"></aside>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CRÉDITOS                                                     -->
+    <!-- ============================================================ -->
+    <section id="creditos" class="credits-section" aria-labelledby="creditosHeading">
+      <div class="section-head">
+        <span class="section-eyebrow">Documentar y compartir</span>
+        <h2 class="section-title" id="creditosHeading">Créditos</h2>
+      </div>
+
+      <div class="credits-grid">
+        <article class="credits-block">
+          <h3>Referencias bibliográficas</h3>
+          <p class="credits-block__hint">Formato APA 7ª edición.</p>
+          <ol class="references-list" id="referencesList"></ol>
+        </article>
+
+        <article class="credits-block">
+          <h3>Agradecimientos</h3>
+          <ul class="acknowledgements-list" id="acknowledgementsList"></ul>
+        </article>
+
+        <article class="credits-block">
+          <h3>Licenciamiento</h3>
+          <div id="licenseContent"></div>
+        </article>
+      </div>
+
+      <div class="nav-map" id="mapa-navegacion" aria-labelledby="navMapHeading">
+        <h3 id="navMapHeading">Mapa de navegación</h3>
+        <ul class="nav-tree" role="tree">
+          <li class="nav-tree__node" role="treeitem">
+            <a href="#inicio">Inicio</a>
+            <ul role="group">
+              <li role="treeitem">
+                <a href="#mision-01">Misión 01 — Identificando</a>
+                <ul role="group">
+                  <li role="treeitem"><a href="#resource-avatar1">Avatar 01</a></li>
+                  <li role="treeitem"><a href="#resource-avatar2">Avatar 02</a></li>
+                  <li role="treeitem"><a href="#resource-poster">Póster digital</a></li>
+                </ul>
+              </li>
+              <li role="treeitem">
+                <a href="#mision-02">Misión 02 — Referenciando</a>
+                <ul role="group">
+                  <li role="treeitem"><a href="#resource-ebook">E-book</a></li>
+                </ul>
+              </li>
+              <li role="treeitem">
+                <a href="#mision-03">Misión 03 — Diseñando</a>
+                <ul role="group">
+                  <li role="treeitem"><a href="#resource-unidadDidactica">Unidad didáctica</a></li>
+                  <li role="treeitem"><a href="#resource-infografia">Infografía</a></li>
+                  <li role="treeitem"><a href="#resource-disenoInstruccional">Diseño instruccional</a></li>
+                  <li role="treeitem"><a href="#resource-productoFinal">Producto final</a></li>
+                  <li role="treeitem"><a href="#resource-videoTutorial">Video tutorial</a></li>
+                </ul>
+              </li>
+              <li role="treeitem"><a href="#creditos">Créditos</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p id="footerText"></p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" class="icon"><use href="#icon-arrow-up"></use></svg>
+  </button>
+
+  <!-- ================================================================ -->
+  <!-- Modal genérico de recursos (imagen / video / documento / enlace) -->
+  <!-- ================================================================ -->
+  <div class="modal" id="resourceModal" role="dialog" aria-modal="true" aria-labelledby="resourceModalTitle" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" type="button" data-close-modal aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" class="icon"><use href="#icon-close"></use></svg>
+      </button>
+      <span class="status-badge" id="resourceModalBadge"></span>
+      <h3 class="modal__title" id="resourceModalTitle"></h3>
+      <p class="modal__description" id="resourceModalDescription"></p>
+      <div class="modal__content" id="resourceModalContent"></div>
+      <div class="modal__footer" id="resourceModalFooter"></div>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

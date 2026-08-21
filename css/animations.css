@@ -1,0 +1,95 @@
+/* ==================================================================== */
+/* animations.css — animaciones discretas de entrada, microinteracciones */
+/* y respeto a prefers-reduced-motion.                                   */
+/* ==================================================================== */
+
+/* -------------------------------------------------------------------- */
+/* Animaciones de entrada al hacer scroll (activadas por app.js         */
+/* mediante IntersectionObserver, que añade la clase .is-visible)       */
+/* -------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto escalonado leve para elementos dentro de una grilla */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.06s; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.12s; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.18s; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.24s; }
+
+/* -------------------------------------------------------------------- */
+/* Carga inicial de la página                                            */
+/* -------------------------------------------------------------------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body:not(.is-loading) .hero__content { animation: fadeInUp 0.7s ease both; }
+body:not(.is-loading) .hero__illustration { animation: fadeInUp 0.9s ease 0.1s both; }
+
+/* -------------------------------------------------------------------- */
+/* Ilustración del hero: órbita y aguja de la brújula                    */
+/* -------------------------------------------------------------------- */
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.hero-illus__orbit {
+  transform-origin: 240px 220px;
+  animation: orbitSpin 60s linear infinite;
+}
+
+@keyframes needlePulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+.hero-illus__needle { animation: needlePulse 3.5s ease-in-out infinite; }
+
+/* -------------------------------------------------------------------- */
+/* Modal: entrada suave                                                   */
+/* -------------------------------------------------------------------- */
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalPanelIn { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.modal:not([hidden]) .modal__backdrop { animation: modalFadeIn 0.18s ease both; }
+.modal:not([hidden]) .modal__panel { animation: modalPanelIn 0.22s ease both; }
+
+/* -------------------------------------------------------------------- */
+/* prefers-reduced-motion: se desactivan animaciones no esenciales       */
+/* -------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .reveal, .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-illus__orbit, .hero-illus__needle,
+  body:not(.is-loading) .hero__content,
+  body:not(.is-loading) .hero__illustration {
+    animation: none !important;
+  }
+
+  .modal:not([hidden]) .modal__backdrop,
+  .modal:not([hidden]) .modal__panel {
+    animation: none !important;
+  }
+
+  .btn:hover, .mission-card:hover, .resource-card:hover {
+    transform: none !important;
+  }
+}

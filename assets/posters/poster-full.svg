@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img"
+     aria-label="Póster digital: diagnóstico de competencias de planeación didáctica">
+  <defs>
+    <radialGradient id="posterGlow" cx="50%" cy="12%" r="55%">
+      <stop offset="0%" stop-color="#e8b74e" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="1000" fill="#0a1128"/>
+  <rect width="800" height="1000" fill="url(#posterGlow)"/>
+
+  <g stroke="#b8c0d9" stroke-width="1" opacity="0.08">
+    <line x1="0" y1="260" x2="800" y2="260"/>
+    <line x1="0" y1="640" x2="800" y2="640"/>
+    <line x1="200" y1="0" x2="200" y2="1000"/>
+    <line x1="600" y1="0" x2="600" y2="1000"/>
+  </g>
+
+  <!-- Encabezado -->
+  <text x="60" y="90" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="18" letter-spacing="4"
+        fill="#e8b74e" font-weight="700">MISIÓN 01 — IDENTIFICANDO</text>
+  <text x="60" y="150" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800" fill="#f5f3ee">
+    Diagnóstico de planeación
+  </text>
+  <text x="60" y="188" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="40" font-weight="800" fill="#22d3ee">
+    didáctica
+  </text>
+  <text x="60" y="228" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="18" fill="#b8c0d9">
+    Docentes en formación · Segundo semestre · Programa de Formación Complementaria
+  </text>
+
+  <!-- Brújula decorativa -->
+  <g transform="translate(700 90)" opacity="0.9">
+    <polygon points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21" fill="none" stroke="#e8b74e" stroke-width="2.5"/>
+    <path d="M0 -18 L5 4 L0 18 L-5 4 Z" fill="#22d3ee"/>
+  </g>
+
+  <!-- Bloques de estadística -->
+  <g font-family="system-ui, Segoe UI, Arial, sans-serif">
+    <!-- 66% -->
+    <g transform="translate(60 320)">
+      <rect width="320" height="150" rx="16" fill="#16204a" stroke="#2a355c"/>
+      <text x="28" y="66" font-size="56" font-weight="800" fill="#22d3ee">66%</text>
+      <text x="28" y="98" font-size="18" font-weight="700" fill="#f5f3ee">DBA + evidencias + desempeños</text>
+      <text x="28" y="124" font-size="14" fill="#7e88ab">Dificultad para articular coherencia curricular</text>
+    </g>
+    <!-- 65% -->
+    <g transform="translate(420 320)">
+      <rect width="320" height="150" rx="16" fill="#16204a" stroke="#2a355c"/>
+      <text x="28" y="66" font-size="56" font-weight="800" fill="#e8b74e">65%</text>
+      <text x="28" y="98" font-size="18" font-weight="700" fill="#f5f3ee">Actividades + evaluación</text>
+      <text x="28" y="124" font-size="14" fill="#7e88ab">Dificultad para relacionar actividad y evaluación</text>
+    </g>
+    <!-- 60% objetivos -->
+    <g transform="translate(60 500)">
+      <rect width="320" height="150" rx="16" fill="#16204a" stroke="#2a355c"/>
+      <text x="28" y="66" font-size="56" font-weight="800" fill="#34d399">60%</text>
+      <text x="28" y="98" font-size="18" font-weight="700" fill="#f5f3ee">Objetivos de aprendizaje</text>
+      <text x="28" y="124" font-size="14" fill="#7e88ab">Dificultad en la formulación de objetivos</text>
+    </g>
+    <!-- 60% TIC -->
+    <g transform="translate(420 500)">
+      <rect width="320" height="150" rx="16" fill="#16204a" stroke="#2a355c"/>
+      <text x="28" y="66" font-size="56" font-weight="800" fill="#f0b429">60%</text>
+      <text x="28" y="98" font-size="18" font-weight="700" fill="#f5f3ee">Uso pedagógico de TIC</text>
+      <text x="28" y="124" font-size="14" fill="#7e88ab">Uso pedagógico limitado de recursos digitales</text>
+    </g>
+  </g>
+
+  <!-- Rutas conectando los bloques (metáfora de misión) -->
+  <g fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4 8" opacity="0.5">
+    <path d="M400 395 L420 395"/>
+    <path d="M220 470 L220 500"/>
+    <path d="M580 470 L580 500"/>
+  </g>
+
+  <!-- Pie -->
+  <text x="60" y="740" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#f5f3ee">
+    La propuesta: una secuencia didáctica gamificada mediada por Genially
+  </text>
+  <text x="60" y="770" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="15" fill="#b8c0d9">
+    Organizada progresivamente mediante retos y misiones pedagógicas.
+  </text>
+
+  <text x="60" y="945" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="14" fill="#7e88ab">
+    Escuela Normal Superior de Corozal
+  </text>
+  <text x="60" y="968" font-family="system-ui, Segoe UI, Arial, sans-serif" font-size="14" fill="#7e88ab">
+    Diseño y Construcción de Recursos Educativos Digitales
+  </text>
+</svg>
