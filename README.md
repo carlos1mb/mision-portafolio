@@ -111,8 +111,9 @@ Edita el arreglo `SITE_CONFIG.people.authors` en `js/config.js`:
 
 ```js
 authors: [
-  { name: "Carlos Martínez Balasnoa", role: "Autor" },
-  { name: "Nombre del nuevo autor", role: "Autor" },
+  { name: "Carlos I. Martínez", role: "Autor" },
+  { name: "Paola Arciniegas", role: "Autor" },
+  { name: "Nombre del nuevo autor", role: "Autor" }, // agregar así cuantos falten
 ],
 ```
 
@@ -249,4 +250,10 @@ Pendiente para iteraciones siguientes (todo se agrega solo en
 
 ## Autoría
 
-**Carlos Martínez Balasnoa** — Escuela Normal Superior de Corozal.
+- **Carlos I. Martínez**
+- **Paola Arciniegas**
+- **David M. Melo**
+- **Alma X. Lemos**
+
+Universidad de Cartagena — Centro de Posgrados — Facultad de Ciencias Sociales y Educación — Maestría en Recursos Digitales Aplicados a la Educación.
+Directora / asesora: Magda Villamil.
