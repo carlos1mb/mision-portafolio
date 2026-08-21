@@ -93,8 +93,7 @@ const SITE_CONFIG = {
       { name: "Alma X. Lemos", role: "Autor" },
     ],
     // Docente tutor de la asignatura (distinto de la directora de tesis).
-    // No inventar nombres: se deja como placeholder explícito hasta confirmar.
-    tutor: "[NOMBRE DOCENTE TUTOR]",
+    tutor: "Walter José Mejía Valeta",
     director: "Magda Villamil",
   },
 
