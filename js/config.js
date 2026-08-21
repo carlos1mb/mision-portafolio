@@ -36,13 +36,34 @@ const SITE_CONFIG = {
   },
 
   /* ---------------------------------------------------------------- */
-  /* Institución y curso                                               */
+  /* Institución académica (donde se cursa la maestría y esta          */
+  /* asignatura) y curso                                                */
   /* ---------------------------------------------------------------- */
   institution: {
+    name: "Universidad de Cartagena",
+    center: "Centro de Posgrados",
+    faculty: "Facultad de Ciencias Sociales y Educación",
+    program: "Maestría en Recursos Digitales Aplicados a la Educación",
+    course: "Diseño y Construcción de Recursos Educativos Digitales",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Contexto de aplicación: institución donde se desarrolla la        */
+  /* propuesta (NO es la institución académica de los autores).        */
+  /* ---------------------------------------------------------------- */
+  applicationContext: {
     name: "Escuela Normal Superior de Corozal",
     program: "Programa de Formación Complementaria",
-    course: "Diseño y Construcción de Recursos Educativos Digitales",
     semester: "Segundo semestre",
+  },
+
+  /* ---------------------------------------------------------------- */
+  /* Datos formales del trabajo de grado (ficha)                       */
+  /* ---------------------------------------------------------------- */
+  workInfo: {
+    type: "Trabajo de grado",
+    location: "Corozal, Sucre, Colombia",
+    date: "04/06/2026",
   },
 
   /* ---------------------------------------------------------------- */
@@ -50,7 +71,7 @@ const SITE_CONFIG = {
   /* ---------------------------------------------------------------- */
   project: {
     fullTitle:
-      "Secuencia didáctica gamificada en Genially para fortalecer las competencias pedagógicas asociadas a la planeación didáctica en los docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal",
+      "Secuencia didáctica gamificada en Genially para fortalecer las competencias pedagógicas en la planeación didáctica de los docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal",
     heroTag: "PORTAFOLIO RED",
     heroTitleLine1: "MISIÓN:",
     heroTitleLine2: "PLANEAR PARA ENSEÑAR",
@@ -65,10 +86,16 @@ const SITE_CONFIG = {
   /* ---------------------------------------------------------------- */
   people: {
     // Agregar más coautores: { name: "...", role: "Autor" }
-    authors: [{ name: "Carlos Martínez Balasnoa", role: "Autor" }],
+    authors: [
+      { name: "Carlos I. Martínez", role: "Autor" },
+      { name: "Paola Arciniegas", role: "Autor" },
+      { name: "David M. Melo", role: "Autor" },
+      { name: "Alma X. Lemos", role: "Autor" },
+    ],
+    // Docente tutor de la asignatura (distinto de la directora de tesis).
     // No inventar nombres: se deja como placeholder explícito hasta confirmar.
     tutor: "[NOMBRE DOCENTE TUTOR]",
-    director: "[NOMBRE DIRECTOR]",
+    director: "Magda Villamil",
   },
 
   /* ---------------------------------------------------------------- */
@@ -169,8 +196,13 @@ const SITE_CONFIG = {
       missionId: "mision-01",
       description: "Síntesis visual del diagnóstico que motiva la propuesta.",
       status: "completed",
-      thumbnail: "assets/posters/poster-full.svg",
-      fullImage: "assets/posters/poster-full.svg",
+      thumbnail: "assets/posters/poster.png",
+      fullImage: "assets/posters/poster.png",
+      // Enlace opcional adicional (ej. diseño editable en Canva). Si se
+      // define, el modal muestra un botón extra junto a "Abrir versión
+      // completa". null = no se muestra.
+      // Nota: este enlace de Canva es de solo vista (no editable).
+      shareLink: { url: "https://canva.link/sg5jwzoc635ym36", label: "Ver en Canva" },
     },
 
     ebook: {
@@ -250,6 +282,11 @@ const SITE_CONFIG = {
       name: "Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional",
       short: "CC BY-NC-SA 4.0",
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es",
+    },
+    aiUsage: {
+      title: "Uso ético de la Inteligencia Artificial",
+      text:
+        "El desarrollo técnico de este portafolio (arquitectura, código, identidad visual e interfaz) se elaboró con apoyo de un asistente de inteligencia artificial (Claude, de Anthropic), bajo la dirección, revisión y supervisión permanente del autor. El diagnóstico, las decisiones pedagógicas, el diseño instruccional y los productos educativos del trabajo de grado son autoría y responsabilidad exclusiva de los estudiantes que lo desarrollan. No se utilizó IA para generar datos, resultados de investigación ni contenido académico sustantivo.",
     },
   },
 

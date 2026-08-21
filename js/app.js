@@ -329,6 +329,31 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* Ficha del trabajo de grado                                           */
+  /* ------------------------------------------------------------------ */
+  function renderFactSheet() {
+    const el = qs("#factSheet");
+    if (!el) return;
+    const { project, institution, applicationContext, workInfo, people } = SITE_CONFIG;
+    const authors = people.authors.map((a) => a.name).join(", ");
+
+    el.classList.add("reveal");
+    el.innerHTML = `
+      <p class="fact-sheet__title-label">Ficha del trabajo de grado</p>
+      <p class="fact-sheet__full-title">${project.fullTitle}</p>
+      <dl class="fact-sheet__grid">
+        <div><dt>Autores</dt><dd>${authors}</dd></div>
+        <div><dt>Tipo de trabajo</dt><dd>${workInfo.type}</dd></div>
+        <div><dt>Institución</dt><dd>${institution.name}<br>${institution.center} — ${institution.faculty}<br>${institution.program}</dd></div>
+        <div><dt>Directora / asesora</dt><dd>${people.director}</dd></div>
+        <div><dt>Docente tutor de la asignatura</dt><dd>${people.tutor}</dd></div>
+        <div><dt>Contexto de aplicación</dt><dd>${applicationContext.name} — ${applicationContext.program} (${applicationContext.semester})</dd></div>
+        <div><dt>Localización</dt><dd>${workInfo.location}</dd></div>
+        <div><dt>Fecha</dt><dd>${workInfo.date}</dd></div>
+      </dl>`;
+  }
+
+  /* ------------------------------------------------------------------ */
   /* Créditos                                                             */
   /* ------------------------------------------------------------------ */
   function renderCreditsSection() {
@@ -361,6 +386,11 @@
             <a class="license-badge__link" href="${credits.license.url}" target="_blank" rel="noopener noreferrer">Ver términos de la licencia ↗</a>
           </div>
         </div>`;
+    }
+
+    const aiUsageContent = qs("#aiUsageContent");
+    if (aiUsageContent && credits.aiUsage) {
+      aiUsageContent.innerHTML = `<p>${credits.aiUsage.text}</p>`;
     }
 
     const creditsGrid = qs("#creditos .credits-grid");
@@ -415,19 +445,27 @@
   }
 
   function buildModalFooter(resource) {
+    const buttons = [];
+
     if (resource.type === "image" && resource.fullImage) {
-      return `<a class="btn btn--secondary" href="${resource.fullImage}" target="_blank" rel="noopener noreferrer">Abrir versión completa</a>`;
+      buttons.push(`<a class="btn btn--secondary" href="${resource.fullImage}" target="_blank" rel="noopener noreferrer">Abrir versión completa</a>`);
     }
     if (resource.type === "document" && resource.documentPath) {
-      return `<a class="btn btn--secondary" href="${resource.documentPath}" target="_blank" rel="noopener noreferrer">Abrir documento</a>`;
+      buttons.push(`<a class="btn btn--secondary" href="${resource.documentPath}" target="_blank" rel="noopener noreferrer">Abrir documento</a>`);
     }
     if (resource.type === "external" && resource.externalLink) {
-      return `<a class="btn btn--secondary" href="${resource.externalLink}" target="_blank" rel="noopener noreferrer">Abrir enlace externo</a>`;
+      buttons.push(`<a class="btn btn--secondary" href="${resource.externalLink}" target="_blank" rel="noopener noreferrer">Abrir enlace externo</a>`);
     }
     if (resource.type === "video" && resource.video && resource.video.type === "external" && resource.video.src) {
-      return `<a class="btn btn--secondary" href="${resource.video.src}" target="_blank" rel="noopener noreferrer">Ver video externo</a>`;
+      buttons.push(`<a class="btn btn--secondary" href="${resource.video.src}" target="_blank" rel="noopener noreferrer">Ver video externo</a>`);
     }
-    return "";
+    // Enlace opcional adicional (ej. abrir el diseño editable en Canva),
+    // disponible para cualquier tipo de recurso.
+    if (resource.shareLink && resource.shareLink.url) {
+      buttons.push(`<a class="btn btn--secondary" href="${resource.shareLink.url}" target="_blank" rel="noopener noreferrer">${resource.shareLink.label || "Ver enlace"}</a>`);
+    }
+
+    return buttons.join("");
   }
 
   function getFocusableElements(container) {
@@ -680,6 +718,7 @@
     renderMissionSections();
     renderDiagnosticStats();
     renderInternalMissionsReference();
+    renderFactSheet();
     renderCreditsSection();
     renderFooter();
     renderProgress();
