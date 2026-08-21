@@ -207,7 +207,8 @@ inicio de `css/styles.css`.
 - Modales con `role="dialog"`, `aria-modal`, foco atrapado y `Escape` para
   cerrar; el foco vuelve al elemento que abrió el modal.
 - Barra de progreso con `role="progressbar"` y `aria-valuenow` real; el
-  indicador ASCII decorativo (`████░░░░ 35%`) está marcado `aria-hidden`.
+  porcentaje visible junto a la barra está marcado `aria-hidden` para no
+  duplicar el anuncio ante lectores de pantalla (ya lo cubre `aria-valuenow`).
 - `prefers-reduced-motion` respetado: se desactivan animaciones no esenciales.
 - Enlace "Saltar al contenido principal" (*skip link*) al inicio de la página.
 - `:focus-visible` con anillo de foco visible en todos los elementos

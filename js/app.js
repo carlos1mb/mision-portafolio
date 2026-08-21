@@ -88,12 +88,6 @@
     return inProgress || SITE_CONFIG.missions[SITE_CONFIG.missions.length - 1];
   }
 
-  function buildAsciiProgressBar(percent, totalBlocks) {
-    const blocks = totalBlocks || 15;
-    const filled = Math.round((percent / 100) * blocks);
-    return "█".repeat(filled) + "░".repeat(blocks - filled) + " " + percent + "%";
-  }
-
   /* ------------------------------------------------------------------ */
   /* Meta tags (título, descripción, favicon, theme-color, Open Graph)   */
   /* Se sincronizan desde SITE_CONFIG.meta para que sea la única fuente  */
@@ -216,7 +210,7 @@
     const label = qs("#globalProgressLabel");
     if (fill) fill.style.width = global.percent + "%";
     if (bar) bar.setAttribute("aria-valuenow", String(global.percent));
-    if (ascii) ascii.textContent = buildAsciiProgressBar(global.percent);
+    if (ascii) ascii.textContent = `${global.percent}%`;
     if (label) label.textContent = `${global.completed} de ${global.total} recursos completados`;
 
     const resourcesCard = qs("#resourcesCompletedCard");
