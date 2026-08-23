@@ -178,16 +178,16 @@ const SITE_CONFIG = {
       type: "video",
       missionId: "mision-01",
       description: "Presentación del título del trabajo de grado, autores y director.",
-      status: "building",
-      video: { type: "local", src: null }, // local | embed | external
+      status: "completed",
+      video: { type: "local", src: "assets/videos/Avatar1.mp4" }, // local | embed | external
     },
     avatar2: {
       title: "Avatar 02",
       type: "video",
       missionId: "mision-01",
       description: "Presentación breve de la problemática y el planteamiento del problema.",
-      status: "building",
-      video: { type: "local", src: null },
+      status: "completed",
+      video: { type: "local", src: "assets/videos/Avatar2.mp4" },
     },
     poster: {
       title: "Póster digital — Diagnóstico",
