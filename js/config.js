@@ -273,7 +273,16 @@ const SITE_CONFIG = {
   /* ---------------------------------------------------------------- */
   credits: {
     // Agregar referencias en formato APA 7 a medida que se confirmen.
-    references: [],
+    references: [
+      'Cevikbas, M., König, J., &amp; Rothland, M. (2024). Empirical research on teacher competence in mathematics lesson planning: Recent developments. <em>ZDM–Mathematics Education</em>, <em>56</em>, 101–113. <a href="https://doi.org/10.1007/s11858-023-01487-2" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s11858-023-01487-2</a>',
+      'Genially. (s. f.). <em>Free gamification platform: Create game-based materials in minutes</em>. <a href="https://genially.com/features/gamification/" target="_blank" rel="noopener noreferrer">https://genially.com/features/gamification/</a>',
+      'Ministerio de Educación Nacional. (2024). <em>Sistema Colombiano de Formación de Educadores</em>. <a href="https://www.mineducacion.gov.co/portal/adelante-maestros/formacion/sistema-colombiano-de-formacion-de-educadores/" target="_blank" rel="noopener noreferrer">mineducacion.gov.co</a>',
+      'Sailer, M., &amp; Homner, L. (2020). The gamification of learning: A meta-analysis. <em>Educational Psychology Review</em>, <em>32</em>(1), 77–112. <a href="https://doi.org/10.1007/s10648-019-09498-w" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s10648-019-09498-w</a>',
+      'UNESCO. (2018). <em>UNESCO ICT competency framework for teachers</em> (Version 3). UNESCO. <a href="https://unesdoc.unesco.org/ark:/48223/pf0000265721" target="_blank" rel="noopener noreferrer">unesdoc.unesco.org</a>',
+    ],
+    // Fuente de los datos mostrados en el póster/diagnóstico de Misión 01.
+    diagnosticSource:
+      "Elaboración propia a partir de los resultados del diagnóstico inicial aplicado a 50 docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal.",
     acknowledgements: [
       "A la comunidad educativa de la Escuela Normal Superior de Corozal por su acompañamiento en este proceso de formación.",
     ],

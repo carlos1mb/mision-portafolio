@@ -446,6 +446,10 @@ main > section {
 .references-list, .acknowledgements-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
 .references-list li, .acknowledgements-list li { font-size: 0.88rem; color: var(--text-secondary); }
 .references-list .empty-hint, .acknowledgements-list .empty-hint { color: var(--text-muted); font-style: italic; }
+.references-list a { color: var(--accent-secondary); word-break: break-word; }
+.references-list a:hover { text-decoration: underline; }
+.references-source { font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border); }
+.references-source strong { color: var(--text-secondary); }
 
 .license-badge {
   display: flex; align-items: center; gap: 0.9rem; padding: 1rem; border-radius: var(--radius-sm);

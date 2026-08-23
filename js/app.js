@@ -361,6 +361,13 @@
         : `<li class="empty-hint">Referencias en proceso de confirmación (formato APA 7).</li>`;
     }
 
+    const diagnosticSource = qs("#diagnosticSource");
+    if (diagnosticSource) {
+      diagnosticSource.innerHTML = credits.diagnosticSource
+        ? `<strong>Fuente de los datos del diagnóstico:</strong> ${credits.diagnosticSource}`
+        : "";
+    }
+
     const acknowledgementsList = qs("#acknowledgementsList");
     if (acknowledgementsList) {
       acknowledgementsList.classList.add("reveal-stagger");
