@@ -437,6 +437,7 @@
         return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-document"></use></svg><p>${message}</p></div>`;
       }
       case "external": {
+        if (resource.fullImage) return `<img src="${resource.fullImage}" alt="${resource.title}">`;
         const message = resource.externalLink ? "Este producto se aloja en un enlace externo." : "El enlace externo aún no ha sido incorporado.";
         return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg><p>${message}</p></div>`;
       }
@@ -455,7 +456,7 @@
       buttons.push(`<a class="btn btn--secondary" href="${resource.documentPath}" target="_blank" rel="noopener noreferrer">Abrir documento</a>`);
     }
     if (resource.type === "external" && resource.externalLink) {
-      buttons.push(`<a class="btn btn--secondary" href="${resource.externalLink}" target="_blank" rel="noopener noreferrer">Abrir enlace externo</a>`);
+      buttons.push(`<a class="btn btn--secondary" href="${resource.externalLink}" target="_blank" rel="noopener noreferrer">${resource.externalLinkLabel || "Abrir enlace externo"}</a>`);
     }
     if (resource.type === "video" && resource.video && resource.video.type === "external" && resource.video.src) {
       buttons.push(`<a class="btn btn--secondary" href="${resource.video.src}" target="_blank" rel="noopener noreferrer">Ver video externo</a>`);

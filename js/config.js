@@ -206,11 +206,14 @@ const SITE_CONFIG = {
 
     ebook: {
       title: "E-book",
-      type: "document",
+      type: "external",
       missionId: "mision-02",
       description: "Fundamentos teóricos que orientan la propuesta didáctica.",
-      status: "building",
-      documentPath: null,
+      status: "completed",
+      thumbnail: "assets/img/ebook-cover.png",
+      fullImage: "assets/img/ebook-cover.png",
+      externalLink: "https://read.bookcreator.com/IsDTpNs7osTkVH8ZvArfDU4XJl33/gX3EErgGTRC-nTgjjIWmNQ",
+      externalLinkLabel: "Abrir e-book en Book Creator",
     },
 
     unidadDidactica: {
