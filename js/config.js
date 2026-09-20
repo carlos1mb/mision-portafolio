@@ -222,6 +222,8 @@ const SITE_CONFIG = {
       missionId: "mision-03",
       description: "Planeación de la secuencia didáctica gamificada.",
       status: "completed",
+      thumbnail: "assets/img/unidad-didactica-cover.png",
+      fullImage: "assets/img/unidad-didactica-cover.png",
       externalLink: "https://canva.link/vos5lz3r39hd50t",
       externalLinkLabel: "Ver unidad didáctica en Canva",
     },
