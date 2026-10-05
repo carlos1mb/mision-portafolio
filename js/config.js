@@ -230,11 +230,12 @@ const SITE_CONFIG = {
     infografia: {
       title: "Infografía",
       subtitle: "Propuesta metodológica",
-      type: "image",
+      type: "external",
       missionId: "mision-03",
       description: "Síntesis visual de la propuesta metodológica.",
-      status: "locked",
-      fullImage: null,
+      status: "completed",
+      externalLink: "https://view.genially.com/6ac2de4879a0b062bb3613a6",
+      externalLinkLabel: "Ver infografía en Genially",
     },
     disenoInstruccional: {
       title: "Diseño instruccional",
