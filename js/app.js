@@ -454,7 +454,7 @@
     // Texto explicativo opcional adicional (ej. contexto de un referente
     // metodológico como ADDIE), mostrado debajo del contenido principal.
     if (resource.extendedInfo) {
-      main += `<p class="modal-extended-info">${resource.extendedInfo}</p>`;
+      main += `<div class="modal-extended-info">${resource.extendedInfo}</div>`;
     }
 
     return main;

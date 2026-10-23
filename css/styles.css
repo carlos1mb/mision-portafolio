@@ -529,6 +529,7 @@ main > section {
 .modal__content { margin-bottom: 1.25rem; }
 .modal__content img { width: 100%; border-radius: var(--radius-sm); }
 .modal-extended-info { margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+.modal-extended-info p + p { margin-top: 0.75rem; }
 
 .video-embed-16x9 {
   position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-secondary);

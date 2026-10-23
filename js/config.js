@@ -259,8 +259,11 @@ const SITE_CONFIG = {
       type: "external",
       missionId: "mision-03",
       description: "Secuencia didáctica gamificada, mediada por Genially.",
-      status: "locked",
-      externalLink: null,
+      status: "completed",
+      externalLink: "https://view.genially.com/6acd58d6d68e3a889e011cd5",
+      externalLinkLabel: "Abrir secuencia en Genially",
+      extendedInfo:
+        "<p>Recurso educativo digital interactivo desarrollado en Genially, dirigido a docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal.</p><p>Su diseño propone un recorrido de cinco misiones pedagógicas orientadas a fortalecer la formulación de objetivos, la coherencia entre actividades y evaluación, la selección pertinente de recursos digitales y la contextualización de la planeación didáctica.</p>",
     },
     videoTutorial: {
       title: "Video tutorial",
