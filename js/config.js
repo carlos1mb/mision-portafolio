@@ -260,6 +260,8 @@ const SITE_CONFIG = {
       missionId: "mision-03",
       description: "Secuencia didáctica gamificada, mediada por Genially.",
       status: "completed",
+      thumbnail: "assets/img/planealab-logo.png",
+      fullImage: "assets/img/planealab-logo.png",
       externalLink: "https://view.genially.com/6acd58d6d68e3a889e011cd5",
       externalLinkLabel: "Abrir secuencia en Genially",
       extendedInfo:
