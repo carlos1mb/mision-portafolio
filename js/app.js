@@ -417,33 +417,47 @@
       return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-wrench"></use></svg><p>Este recurso está en construcción. Vuelve pronto para consultarlo.</p></div>`;
     }
 
+    let main;
     switch (resource.type) {
       case "video": {
         const video = resource.video || {};
         if (video.type === "local" && video.src) {
-          return `<div class="video-embed-16x9"><video controls preload="metadata" src="${video.src}"></video></div>`;
+          main = `<div class="video-embed-16x9"><video controls preload="metadata" src="${video.src}"></video></div>`;
+        } else if (video.type === "embed" && video.src) {
+          main = `<div class="video-embed-16x9"><iframe src="${video.src}" title="${resource.title}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+        } else {
+          main = `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-video"></use></svg><p>El video aún no ha sido incorporado.</p></div>`;
         }
-        if (video.type === "embed" && video.src) {
-          return `<div class="video-embed-16x9"><iframe src="${video.src}" title="${resource.title}" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-        }
-        return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-video"></use></svg><p>El video aún no ha sido incorporado.</p></div>`;
+        break;
       }
       case "image": {
-        if (resource.fullImage) return `<img src="${resource.fullImage}" alt="${resource.title}">`;
-        return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-image"></use></svg><p>La imagen aún no ha sido incorporada.</p></div>`;
+        main = resource.fullImage
+          ? `<img src="${resource.fullImage}" alt="${resource.title}">`
+          : `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-image"></use></svg><p>La imagen aún no ha sido incorporada.</p></div>`;
+        break;
       }
       case "document": {
         const message = resource.documentPath ? "Documento disponible para consulta." : "El documento aún no ha sido incorporado.";
-        return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-document"></use></svg><p>${message}</p></div>`;
+        main = `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-document"></use></svg><p>${message}</p></div>`;
+        break;
       }
       case "external": {
-        if (resource.fullImage) return `<img src="${resource.fullImage}" alt="${resource.title}">`;
-        const message = resource.externalLink ? "Este producto se aloja en un enlace externo." : "El enlace externo aún no ha sido incorporado.";
-        return `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg><p>${message}</p></div>`;
+        main = resource.fullImage
+          ? `<img src="${resource.fullImage}" alt="${resource.title}">`
+          : `<div class="modal-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg><p>${resource.externalLink ? "Este producto se aloja en un enlace externo." : "El enlace externo aún no ha sido incorporado."}</p></div>`;
+        break;
       }
       default:
-        return "";
+        main = "";
     }
+
+    // Texto explicativo opcional adicional (ej. contexto de un referente
+    // metodológico como ADDIE), mostrado debajo del contenido principal.
+    if (resource.extendedInfo) {
+      main += `<p class="modal-extended-info">${resource.extendedInfo}</p>`;
+    }
+
+    return main;
   }
 
   function buildModalFooter(resource) {

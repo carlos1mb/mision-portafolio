@@ -239,11 +239,16 @@ const SITE_CONFIG = {
     },
     disenoInstruccional: {
       title: "Diseño instruccional",
-      type: "document",
+      type: "image",
       missionId: "mision-03",
-      description: "Estructura instruccional de la secuencia gamificada.",
-      status: "locked",
-      documentPath: null,
+      description: "Estructura instruccional de la secuencia gamificada, basada en el modelo ADDIE.",
+      status: "completed",
+      thumbnail: "assets/img/addie-model.png",
+      fullImage: "assets/img/addie-model.png",
+      extendedInfo:
+        "El modelo ADDIE (Analizar, Diseñar, Desarrollar, Implementar, Evaluar) ofrece una ruta sistemática y cíclica para organizar una secuencia didáctica: parte de un diagnóstico real de necesidades, traduce esos hallazgos en objetivos y actividades coherentes, guía la construcción ordenada de los recursos digitales, orienta su aplicación con los docentes en formación y cierra con una evaluación que permite ajustar y mejorar la propuesta. Esta lógica garantiza que cada decisión pedagógica del portafolio esté fundamentada y pueda perfeccionarse de forma continua.",
+      // Enlace opcional de referencia para profundizar en el modelo ADDIE.
+      shareLink: null, // { url: "...", label: "Conocer más sobre ADDIE" }
     },
     productoFinal: {
       title: "Producto final",
