@@ -245,10 +245,14 @@ const SITE_CONFIG = {
       status: "completed",
       thumbnail: "assets/img/addie-model.png",
       fullImage: "assets/img/addie-model.png",
+      // La imagen ya se muestra completa en el modal; en vez del botón
+      // genérico "Abrir versión completa" (redundante aquí), se oculta y se
+      // usa el shareLink de abajo como único botón.
+      hideFullImageLink: true,
       extendedInfo:
         "El modelo ADDIE (Analizar, Diseñar, Desarrollar, Implementar, Evaluar) ofrece una ruta sistemática y cíclica para organizar una secuencia didáctica: parte de un diagnóstico real de necesidades, traduce esos hallazgos en objetivos y actividades coherentes, guía la construcción ordenada de los recursos digitales, orienta su aplicación con los docentes en formación y cierra con una evaluación que permite ajustar y mejorar la propuesta. Esta lógica garantiza que cada decisión pedagógica del portafolio esté fundamentada y pueda perfeccionarse de forma continua.",
-      // Enlace opcional de referencia para profundizar en el modelo ADDIE.
-      shareLink: null, // { url: "...", label: "Conocer más sobre ADDIE" }
+      // Enlace de referencia para profundizar en el modelo ADDIE.
+      shareLink: { url: "https://www.ispring.es/blog/modelo-addie", label: "Consultar más" },
     },
     productoFinal: {
       title: "Producto final",

@@ -463,7 +463,7 @@
   function buildModalFooter(resource) {
     const buttons = [];
 
-    if (resource.type === "image" && resource.fullImage) {
+    if (resource.type === "image" && resource.fullImage && !resource.hideFullImageLink) {
       buttons.push(`<a class="btn btn--secondary" href="${resource.fullImage}" target="_blank" rel="noopener noreferrer">Abrir versión completa</a>`);
     }
     if (resource.type === "document" && resource.documentPath) {
