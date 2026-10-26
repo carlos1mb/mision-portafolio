@@ -537,6 +537,13 @@ main > section {
 .modal-extended-info { margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
 .modal-extended-info p + p { margin-top: 0.75rem; }
 
+.modal-subheading { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-top: 1.5rem; margin-bottom: 0.75rem; }
+.modal-table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+.modal-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.modal-table th, .modal-table td { text-align: left; padding: 0.6rem 0.75rem; border: 1px solid var(--border); vertical-align: top; }
+.modal-table th { background: var(--bg-secondary); color: var(--text-secondary); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+.modal-note { font-size: 0.85rem; color: var(--text-muted); font-style: italic; border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 1rem; }
+
 .video-embed-16x9 {
   position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--bg-secondary);
   border-radius: var(--radius-sm); overflow: hidden;

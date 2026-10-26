@@ -300,6 +300,30 @@ const SITE_CONFIG = {
       // Instrucciones para ver el recurso sin conexión con Genially Viewer.
       viewerInfo:
         "El botón anterior abre el archivo en Google Drive (pesa 126 MB, así que Drive puede mostrar un aviso de \"no se puede escanear por virus\"; solo debes elegir \"Descargar de todas formas\"). Luego ábrelo con <strong>Genially Viewer</strong>, la aplicación gratuita de Genially para computador, Android e iOS (búscala como \"Genially Viewer\" en Google Play, App Store o en el sitio oficial de Genially).",
+      // Modal aparte (botón "Relación con la investigación") con el texto
+      // que vincula este producto con el proyecto de investigación.
+      // NOTA: el texto menciona una muestra de 30 estudiantes, mientras que
+      // el diagnóstico ya publicado en el sitio (póster, Misión 01,
+      // Créditos) dice "aplicado a 50 docentes en formación". Pendiente de
+      // confirmar con el usuario cuál cifra es la definitiva.
+      relacionInvestigacion: {
+        buttonLabel: "Relación con la investigación",
+        title: "Relación con el proyecto de investigación",
+        content:
+          '<p>El recurso educativo digital <strong>Misión: Planear para Enseñar</strong> surge de la investigación orientada al fortalecimiento de las competencias pedagógicas asociadas a la planeación didáctica en docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal. La propuesta responde a necesidades detectadas en la formulación de objetivos de aprendizaje, la articulación de actividades con los procesos de evaluación, la elección de recursos pertinentes y la coherencia general de los planes de clase.</p>' +
+          '<p>Frente a estas necesidades se diseñó una secuencia gamificada en Genially que plantea retos y experiencias interactivas vinculadas con situaciones pedagógicas. Con ello se busca promover la participación, el análisis y la aplicación de criterios de planeación didáctica en contextos cercanos al ejercicio profesional del normalista superior.</p>' +
+          '<p>El recurso constituye el producto de intervención previsto en el proyecto de investigación. Su diseño e implementación se orientan a fortalecer las competencias de planeación; la magnitud de los resultados solo podrá establecerse mediante el análisis de los instrumentos aplicados, por lo que no se anticipan efectos aún no comprobados.</p>' +
+          '<h4 class="modal-subheading">Correspondencia entre necesidades y propuesta</h4>' +
+          '<div class="modal-table-wrap"><table class="modal-table">' +
+          "<thead><tr><th>Necesidad identificada</th><th>Respuesta pedagógica prevista</th></tr></thead>" +
+          "<tbody>" +
+          "<tr><td>Objetivos de aprendizaje poco articulados</td><td>Retos para analizar y formular objetivos coherentes con el contexto.</td></tr>" +
+          "<tr><td>Dificultades al relacionar actividades y evaluación</td><td>Situaciones que requieren conectar actividades, evidencias y criterios evaluativos.</td></tr>" +
+          "<tr><td>Selección de recursos sin suficiente justificación</td><td>Actividades de elección de recursos según el propósito didáctico.</td></tr>" +
+          "<tr><td>Necesidad de reflexionar sobre decisiones pedagógicas</td><td>Misiones contextualizadas con preguntas y retroalimentación.</td></tr>" +
+          "</tbody></table></div>" +
+          '<p class="modal-note"><strong>Nota metodológica:</strong> la muestra de trabajo de la investigación fue ajustada a 30 estudiantes; cualquier cifra diagnóstica incluida en el portafolio debe coincidir con los registros definitivos y no extrapolar porcentajes de análisis previos.</p>',
+      },
     },
     videoTutorial: {
       title: "Video tutorial",

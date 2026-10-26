@@ -255,6 +255,7 @@
         <p class="resource-card__desc">${resource.description}</p>
         <button class="btn btn--card" type="button" data-resource-id="${id}" ${disabledAttr}>${buttonLabel}</button>
         ${resource.fichaTecnica ? `<button class="btn btn--card-outline" type="button" data-ficha-id="${id}">Ficha técnica</button>` : ""}
+        ${resource.relacionInvestigacion ? `<button class="btn btn--card-outline" type="button" data-info-id="${id}">${resource.relacionInvestigacion.buttonLabel || "Relación con la investigación"}</button>` : ""}
       </article>`;
   }
 
@@ -644,11 +645,74 @@
     }
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Modal informativo genérico                                           */
+  /* ------------------------------------------------------------------ */
+  let lastFocusedElementInfo = null;
+
+  function openInfoModal(resourceId) {
+    const resource = SITE_CONFIG.resources[resourceId];
+    if (!resource || !resource.relacionInvestigacion) return;
+    const modal = qs("#infoModal");
+    if (!modal) return;
+
+    lastFocusedElementInfo = document.activeElement;
+
+    const titleEl = qs("#infoModalTitle");
+    if (titleEl) titleEl.textContent = resource.relacionInvestigacion.title || resource.title;
+
+    const contentEl = qs("#infoModalContent");
+    if (contentEl) contentEl.innerHTML = resource.relacionInvestigacion.content || "";
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleInfoModalKeydown);
+
+    const closeBtn = modal.querySelector(".modal__close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeInfoModal() {
+    const modal = qs("#infoModal");
+    if (!modal || modal.hidden) return;
+
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", handleInfoModalKeydown);
+
+    if (lastFocusedElementInfo && typeof lastFocusedElementInfo.focus === "function") {
+      lastFocusedElementInfo.focus();
+    }
+  }
+
+  function handleInfoModalKeydown(e) {
+    const modal = qs("#infoModal");
+    if (!modal || modal.hidden) return;
+    if (e.key === "Escape") {
+      closeInfoModal();
+      return;
+    }
+    if (e.key === "Tab") {
+      const focusable = getFocusableElements(modal);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
   function setupModalGlobalListeners() {
     document.addEventListener("click", (e) => {
       const trigger = e.target.closest("[data-close-modal]");
       if (!trigger) return;
       if (trigger.closest("#fichaTecnicaModal")) closeFichaTecnicaModal();
+      else if (trigger.closest("#infoModal")) closeInfoModal();
       else closeResourceModal();
     });
   }
@@ -661,7 +725,12 @@
         return;
       }
       const fichaBtn = e.target.closest("button[data-ficha-id]");
-      if (fichaBtn) openFichaTecnicaModal(fichaBtn.dataset.fichaId);
+      if (fichaBtn) {
+        openFichaTecnicaModal(fichaBtn.dataset.fichaId);
+        return;
+      }
+      const infoBtn = e.target.closest("button[data-info-id]");
+      if (infoBtn) openInfoModal(infoBtn.dataset.infoId);
     });
   }
 
