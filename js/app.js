@@ -481,6 +481,13 @@
     if (resource.shareLink && resource.shareLink.url) {
       buttons.push(`<a class="btn btn--secondary" href="${resource.shareLink.url}" target="_blank" rel="noopener noreferrer">${resource.shareLink.label || "Ver enlace"}</a>`);
     }
+    // Descarga opcional (ej. archivo .genially), visible también aquí
+    // además del modal de ficha técnica, por si no la revisan.
+    if (resource.downloadFile && resource.downloadFile.url) {
+      buttons.push(
+        `<a class="btn btn--secondary" href="${resource.downloadFile.url}" download target="_blank" rel="noopener noreferrer">${resource.downloadFile.label || "Descargar archivo"}</a>`
+      );
+    }
 
     return buttons.join("");
   }
