@@ -266,6 +266,33 @@ const SITE_CONFIG = {
       externalLinkLabel: "Abrir secuencia en Genially",
       extendedInfo:
         "<p>Recurso educativo digital interactivo desarrollado en Genially, dirigido a docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal.</p><p>Su diseño propone un recorrido de cinco misiones pedagógicas orientadas a fortalecer la formulación de objetivos, la coherencia entre actividades y evaluación, la selección pertinente de recursos digitales y la contextualización de la planeación didáctica.</p>",
+      // Ficha técnica mostrada en un modal aparte (botón "Ficha técnica").
+      fichaTecnica: [
+        { label: "Nombre del recurso", value: "Misión PlaneaLab — Rescate de la planeación didáctica" },
+        { label: "Tipo de recurso", value: "Recurso Educativo Digital (RED) interactivo y gamificado" },
+        { label: "Herramienta de autor", value: "Genially" },
+        { label: "Autores", value: "Carlos I. Martínez, Paola Arciniegas, David M. Melo, Alma X. Lemos" },
+        { label: "Institución", value: "Universidad de Cartagena — Maestría en Recursos Digitales Aplicados a la Educación" },
+        {
+          label: "Público objetivo",
+          value: "Docentes en formación, segundo semestre, Programa de Formación Complementaria, Escuela Normal Superior de Corozal",
+        },
+        {
+          label: "Estructura",
+          value:
+            "5 misiones pedagógicas: formular objetivos, diseñar actividades coherentes, construir criterios e instrumentos de evaluación, seleccionar recursos digitales con intención pedagógica y adaptar la planeación al contexto",
+        },
+        { label: "Formato de acceso", value: "En línea (enlace web) y sin conexión (archivo .genially + Genially Viewer)" },
+        { label: "Idioma", value: "Español" },
+        { label: "Licencia", value: "CC BY-NC-SA 4.0" },
+      ],
+      // Archivo .genially descargable para verlo sin conexión. null = aún no incorporado.
+      downloadFile: null, // { url: "assets/documents/producto-final.genially", label: "Descargar archivo (.genially)" }
+      // Instrucciones para ver el recurso sin conexión con Genially Viewer.
+      // Nota: mientras no exista downloadFile, se evita decir "descarga el
+      // archivo anterior" (no habría ningún botón de descarga que mostrar).
+      viewerInfo:
+        "Este recurso también podrá verse sin conexión a internet descargando su archivo <strong>.genially</strong> y abriéndolo con <strong>Genially Viewer</strong>, la aplicación gratuita de Genially para computador, Android e iOS (búscala como \"Genially Viewer\" en Google Play, App Store o en el sitio oficial de Genially). <em>El archivo descargable se añadirá aquí próximamente.</em>",
     },
     videoTutorial: {
       title: "Video tutorial",

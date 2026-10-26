@@ -254,6 +254,7 @@
         ${resource.subtitle ? `<p class="resource-card__subtitle">${resource.subtitle}</p>` : ""}
         <p class="resource-card__desc">${resource.description}</p>
         <button class="btn btn--card" type="button" data-resource-id="${id}" ${disabledAttr}>${buttonLabel}</button>
+        ${resource.fichaTecnica ? `<button class="btn btn--card-outline" type="button" data-ficha-id="${id}">Ficha técnica</button>` : ""}
       </article>`;
   }
 
@@ -559,17 +560,101 @@
     }
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Modal de ficha técnica                                                */
+  /* ------------------------------------------------------------------ */
+  let lastFocusedElementFicha = null;
+
+  function openFichaTecnicaModal(resourceId) {
+    const resource = SITE_CONFIG.resources[resourceId];
+    if (!resource || !resource.fichaTecnica) return;
+    const modal = qs("#fichaTecnicaModal");
+    if (!modal) return;
+
+    lastFocusedElementFicha = document.activeElement;
+
+    const titleEl = qs("#fichaTecnicaModalTitle");
+    if (titleEl) titleEl.textContent = `Ficha técnica — ${resource.title}`;
+
+    const contentEl = qs("#fichaTecnicaContent");
+    if (contentEl) {
+      contentEl.innerHTML = resource.fichaTecnica
+        .map((item) => `<div><dt>${item.label}</dt><dd>${item.value}</dd></div>`)
+        .join("");
+    }
+
+    const noteEl = qs("#fichaTecnicaNote");
+    if (noteEl) noteEl.innerHTML = resource.viewerInfo || "";
+
+    const footerEl = qs("#fichaTecnicaFooter");
+    if (footerEl) {
+      footerEl.innerHTML =
+        resource.downloadFile && resource.downloadFile.url
+          ? `<a class="btn btn--secondary" href="${resource.downloadFile.url}" download>${resource.downloadFile.label || "Descargar archivo"}</a>`
+          : "";
+    }
+
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleFichaModalKeydown);
+
+    const closeBtn = modal.querySelector(".modal__close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeFichaTecnicaModal() {
+    const modal = qs("#fichaTecnicaModal");
+    if (!modal || modal.hidden) return;
+
+    modal.hidden = true;
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", handleFichaModalKeydown);
+
+    if (lastFocusedElementFicha && typeof lastFocusedElementFicha.focus === "function") {
+      lastFocusedElementFicha.focus();
+    }
+  }
+
+  function handleFichaModalKeydown(e) {
+    const modal = qs("#fichaTecnicaModal");
+    if (!modal || modal.hidden) return;
+    if (e.key === "Escape") {
+      closeFichaTecnicaModal();
+      return;
+    }
+    if (e.key === "Tab") {
+      const focusable = getFocusableElements(modal);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
   function setupModalGlobalListeners() {
     document.addEventListener("click", (e) => {
-      if (e.target.closest("[data-close-modal]")) closeResourceModal();
+      const trigger = e.target.closest("[data-close-modal]");
+      if (!trigger) return;
+      if (trigger.closest("#fichaTecnicaModal")) closeFichaTecnicaModal();
+      else closeResourceModal();
     });
   }
 
   function setupResourceCardDelegation() {
     document.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-resource-id]");
-      if (!btn || btn.disabled) return;
-      openResourceModal(btn.dataset.resourceId);
+      if (btn && !btn.disabled) {
+        openResourceModal(btn.dataset.resourceId);
+        return;
+      }
+      const fichaBtn = e.target.closest("button[data-ficha-id]");
+      if (fichaBtn) openFichaTecnicaModal(fichaBtn.dataset.fichaId);
     });
   }
 
