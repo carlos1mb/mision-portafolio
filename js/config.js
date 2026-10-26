@@ -302,10 +302,6 @@ const SITE_CONFIG = {
         "El botón anterior abre el archivo en Google Drive (pesa 126 MB, así que Drive puede mostrar un aviso de \"no se puede escanear por virus\"; solo debes elegir \"Descargar de todas formas\"). Luego ábrelo con <strong>Genially Viewer</strong>, la aplicación gratuita de Genially para computador, Android e iOS (búscala como \"Genially Viewer\" en Google Play, App Store o en el sitio oficial de Genially).",
       // Modal aparte (botón "Relación con la investigación") con el texto
       // que vincula este producto con el proyecto de investigación.
-      // NOTA: el texto menciona una muestra de 30 estudiantes, mientras que
-      // el diagnóstico ya publicado en el sitio (póster, Misión 01,
-      // Créditos) dice "aplicado a 50 docentes en formación". Pendiente de
-      // confirmar con el usuario cuál cifra es la definitiva.
       relacionInvestigacion: {
         buttonLabel: "Relación con la investigación",
         title: "Relación con el proyecto de investigación",
@@ -361,7 +357,7 @@ const SITE_CONFIG = {
     ],
     // Fuente de los datos mostrados en el póster/diagnóstico de Misión 01.
     diagnosticSource:
-      "Elaboración propia a partir de los resultados del diagnóstico inicial aplicado a 50 docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal.",
+      "Elaboración propia a partir de los resultados del diagnóstico inicial aplicado a 30 docentes en formación del segundo semestre del Programa de Formación Complementaria de la Escuela Normal Superior de Corozal.",
     acknowledgements: [
       "A la comunidad educativa de la Escuela Normal Superior de Corozal por su acompañamiento en este proceso de formación.",
     ],
