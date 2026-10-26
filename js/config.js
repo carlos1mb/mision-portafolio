@@ -286,13 +286,20 @@ const SITE_CONFIG = {
         { label: "Idioma", value: "Español" },
         { label: "Licencia", value: "CC BY-NC-SA 4.0" },
       ],
-      // Archivo .genially descargable para verlo sin conexión. null = aún no incorporado.
-      downloadFile: null, // { url: "assets/documents/producto-final.genially", label: "Descargar archivo (.genially)" }
+      // Archivo .genially descargable (alojado en Google Drive, ya que
+      // exportar directamente desde Genially requiere un plan de pago).
+      // Se usa el enlace de "compartir" tal cual (no el de descarga directa
+      // uc?export=download): el archivo pesa 126 MB, así que Drive siempre
+      // muestra su página de advertencia por virus con un token de un solo
+      // uso; es más confiable dejar que el usuario descargue desde la
+      // propia interfaz de Drive.
+      downloadFile: {
+        url: "https://drive.google.com/file/d/1SIacBpfQ0cNkT0n4cZczTwFIUClCnv7-/view?usp=sharing",
+        label: "Descargar archivo (.genially)",
+      },
       // Instrucciones para ver el recurso sin conexión con Genially Viewer.
-      // Nota: mientras no exista downloadFile, se evita decir "descarga el
-      // archivo anterior" (no habría ningún botón de descarga que mostrar).
       viewerInfo:
-        "Este recurso también podrá verse sin conexión a internet descargando su archivo <strong>.genially</strong> y abriéndolo con <strong>Genially Viewer</strong>, la aplicación gratuita de Genially para computador, Android e iOS (búscala como \"Genially Viewer\" en Google Play, App Store o en el sitio oficial de Genially). <em>El archivo descargable se añadirá aquí próximamente.</em>",
+        "El botón anterior abre el archivo en Google Drive (pesa 126 MB, así que Drive puede mostrar un aviso de \"no se puede escanear por virus\"; solo debes elegir \"Descargar de todas formas\"). Luego ábrelo con <strong>Genially Viewer</strong>, la aplicación gratuita de Genially para computador, Android e iOS (búscala como \"Genially Viewer\" en Google Play, App Store o en el sitio oficial de Genially).",
     },
     videoTutorial: {
       title: "Video tutorial",

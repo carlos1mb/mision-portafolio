@@ -590,7 +590,7 @@
     if (footerEl) {
       footerEl.innerHTML =
         resource.downloadFile && resource.downloadFile.url
-          ? `<a class="btn btn--secondary" href="${resource.downloadFile.url}" download>${resource.downloadFile.label || "Descargar archivo"}</a>`
+          ? `<a class="btn btn--secondary" href="${resource.downloadFile.url}" download target="_blank" rel="noopener noreferrer">${resource.downloadFile.label || "Descargar archivo"}</a>`
           : "";
     }
 
