@@ -325,9 +325,16 @@ const SITE_CONFIG = {
       title: "Video tutorial",
       type: "video",
       missionId: "mision-03",
-      description: "Guía de uso del producto final.",
-      status: "locked",
-      video: { type: "embed", src: null },
+      description: "Recorrido guiado por el portafolio digital, su estructura y sus recursos.",
+      status: "completed",
+      thumbnail: "assets/img/video-tutorial-cover.png",
+      video: { type: "embed", src: "https://www.youtube.com/embed/Omuh6_VvIzs" },
+      // Botón adicional para abrir el video directamente en YouTube.
+      shareLink: { url: "https://youtu.be/Omuh6_VvIzs?si=3neL788Y3HRS-X5J", label: "Ver en YouTube" },
+      extendedInfo:
+        '<p>Este video tutorial presenta un recorrido guiado por el portafolio digital “Misión: Planear para Enseñar”, elaborado en el marco del curso Diseño y Construcción de Recursos Educativos Digitales.</p>' +
+        "<p>Durante la navegación se explican su finalidad, estructura, principales secciones, productos desarrollados y recursos multimedia integrados. Asimismo, se destacan las bondades del portafolio como espacio para organizar, visualizar y socializar de manera dinámica los productos derivados del trabajo de grado.</p>" +
+        "<p>Explora el portafolio, conoce sus recursos y descubre cómo se articulan investigación, pedagogía y tecnología en una misma experiencia digital.</p>",
     },
   },
 
